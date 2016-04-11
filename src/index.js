@@ -1,27 +1,33 @@
 import yargs from 'yargs';
 import metarpheusTcomb from './metarpheusTcomb';
 import IntermRep from './IntermRep';
+import Config from './Config';
+import fs from 'fs';
 
 const argv = yargs.argv;
-const intermRepIn = 'interm-rep-in';
-if (!argv[intermRepIn]) {
-  throw new Error(`missing ${intermRepIn}=path/to/metarpheus-interm-rep.json`);
+const configFileArg = 'config';
+if (!argv[configFileArg]) {
+  throw new Error(`missing --${configFileArg}=path/to/config.js[on]`);
 }
 
-const intermRepSource = require(argv[intermRepIn]);
-// TODO(gio): should be configurable
-import modelPrelude from './modelPrelude';
-// TODO(gio): should be configurable
-import apiPrelude from './apiPrelude';
-// TODO(gio): should be configurable
-const overrides = {
-  Date: (_, { prefix = '' }) => `${prefix}LabOnlineDate`,
-  DateTime: (_, { prefix = '' }) => `${prefix}LabOnlineDateTime`,
-  Id: ({ args: [tpe] }, { gen, prefix = '' }) => `${prefix}LabOnlineId/*Id[${gen(tpe)}]*/`
-};
+const {
+  intermRepIn,
+  modelPrelude = `// DO NOT EDIT MANUALLY - metarpheus-generated
 
-const intermRep = IntermRep(intermRepSource);
+`,
+  apiPrelude = `// DO NOT EDIT MANUALLY - metarpheus-generated
+
+`,
+  modelOut,
+  apiOut = '',
+  overrides = {}
+} = Config(require(argv[configFileArg]));
+
+const intermRep = IntermRep(require(intermRepIn));
 
 const { model, api } = metarpheusTcomb({ intermRep, overrides, modelPrelude, apiPrelude });
 
-console.log(model);
+fs.writeFileSync(modelOut, model);
+if (apiOut) {
+  fs.writeFileSync(apiOut, api);
+}
