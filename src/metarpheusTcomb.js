@@ -5,7 +5,7 @@ import genCaseEnum from './genCaseEnum';
 import _genCaseClass from './genCaseClass';
 
 export default function metarpheusTcomb({
-  overrides, intermRep: { routes, models }, modelPrelude, apiPrelude
+  overrides, intermRep: { routes, models }, modelPrelude, apiPrelude, apiModelPrefix
 }) {
   const genType = _genType(overrides);
   const genCaseClass = _genCaseClass(genType);
@@ -22,7 +22,7 @@ export default function metarpheusTcomb({
 
 `);
 
-  const genTypeM = genType('m.');
+  const genTypeM = genType(apiModelPrefix);
 
   const apiRoutes = routes.map(({
     method, authenticated, route,

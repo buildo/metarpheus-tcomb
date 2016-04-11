@@ -26,7 +26,7 @@ const {
 
 const intermRep = IntermRep(require(intermRepIn));
 
-const { model, api } = metarpheusTcomb({ intermRep, overrides, modelPrelude, apiPrelude });
+const { model, api } = metarpheusTcomb({ intermRep, overrides, modelPrelude, apiPrelude, apiModelPrefix });
 
 fs.writeFileSync(modelOut, model);
 if (apiOut) {
