@@ -18,7 +18,8 @@ const {
   apiPrelude = `// DO NOT EDIT MANUALLY - metarpheus-generated
 
 `,
-  modelOut,
+  apiModelPrefix = '',
+  modelOut = 'model.js',
   apiOut = '',
   overrides = {}
 } = Config(require(argv[configFileArg]));

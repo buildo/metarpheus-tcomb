@@ -15,6 +15,7 @@ export default {
   apiPrelude: `${modelPrelude}
 import * as m from './model';
 `,
+  apiModelPrefix: 'm.',
   intermRepIn: 'test/fixtures/metarpheus-interm-rep.json',
   modelOut: 'model.js',
   apiOut: 'api.js',
