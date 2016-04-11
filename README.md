@@ -1,4 +1,7 @@
 # metarpheus-tcomb
+
+[![Build Status](https://travis-ci.org/buildo/metarpheus.svg?branch=master)](https://travis-ci.org/buildo/metarpheus)
+
 generate a [tcomb](https://github.com/gcanti/tcomb) domain model interpreting [metarpheus](https://github.com/buildo/metarpheus) output
 
 ## running
