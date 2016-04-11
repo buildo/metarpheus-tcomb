@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import yargs from 'yargs';
 import metarpheusTcomb from './metarpheusTcomb';
 import IntermRep from './IntermRep';
