@@ -1,0 +1,9 @@
+{
+  "extends": "buildo",
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "no-extra-parens": 0
+  }
+}
