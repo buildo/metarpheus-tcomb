@@ -2,13 +2,18 @@
   "name": "metarpheus-tcomb",
   "version": "0.1.0",
   "description": "metarpheus to JS/tcomb transliteration",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "build": "babel --loose --stage 0 --out-dir lib src",
+    "lint": "eslint src",
+    "preversion": "npm run lint && npm run test",
+    "postversion": "git push && git push --tags",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "metarpheus",
