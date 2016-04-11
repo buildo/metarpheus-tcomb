@@ -12,6 +12,13 @@ if (!argv[configFileArg]) {
   throw new Error(`missing --${configFileArg}=path/to/config.js[on]`);
 }
 
+require('babel/register')({
+  only: new RegExp(argv[configFileArg].replace(/\.js$/, '')), // so that config file can be ESwhatever
+  extensions: ['.js'],
+  stage: 0,
+  loose: true
+});
+
 const {
   intermRepIn,
   modelPrelude = `// DO NOT EDIT MANUALLY - metarpheus-generated
