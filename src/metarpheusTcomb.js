@@ -28,27 +28,27 @@ export default function metarpheusTcomb({
     method, authenticated, route,
     ctrl, params, desc = '', returns
   }) => `  // ${method.toUpperCase()} /${route.map(r => r.str).join('/')} : ${desc}
-    {
-      method: '${method}',
-      name: [${ctrl.map(s => `'${s}'`).join(', ')}],
-      authenticated: ${authenticated},
-      returnType: ${genTypeM(returns)},
-      route: (...routeParams) => [${(() => {
-        let c = 0;
-        return route.map(
-          s => StringSegment.is(s) ? `'${s.str}'` : `routeParams[${c++}]` // eslint-disable-line no-plusplus
-        ).join(', ');
-      })()}].join('/'),
-      routeParamTypes: [${route.filter(ParamSegment.is).map(({
-        routeParam: { tpe }
-      }) => genTypeM(tpe)).join(', ')}],
-      params: {
-        ${params.map(({ name, tpe }) => `${name}: ${genTypeM(tpe)}`).join(`,
-        `)}
-      }
-    }`).join(`,
+  {
+    method: '${method}',
+    name: [${ctrl.map(s => `'${s}'`).join(', ')}],
+    authenticated: ${authenticated},
+    returnType: ${genTypeM(returns)},
+    route: (...routeParams) => [${(() => {
+      let c = 0;
+      return route.map(
+        s => StringSegment.is(s) ? `'${s.str}'` : `routeParams[${c++}]` // eslint-disable-line no-plusplus
+      ).join(', ');
+    })()}].join('/'),
+    routeParamTypes: [${route.filter(ParamSegment.is).map(({
+      routeParam: { tpe }
+    }) => genTypeM(tpe)).join(', ')}],
+    params: {
+      ${params.map(({ name, tpe }) => `${name}: ${genTypeM(tpe)}`).join(`,
+      `)}
+    }
+  }`).join(`,
 
-  `);
+`);
 
   const model = `
 ${modelPrelude}
