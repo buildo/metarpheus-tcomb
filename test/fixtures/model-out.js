@@ -1,57 +1,57 @@
 // Health
-export const Health = t.define('Health');
+export const Health = t.declare('Health');
 
-export const ICQAlert = t.define('ICQAlert');
+export const ICQAlert = t.declare('ICQAlert');
 
-export const ICQAlertCategory = t.define('ICQAlertCategory');
+export const ICQAlertCategory = t.declare('ICQAlertCategory');
 
-export const ICQAssayReference = t.define('ICQAssayReference');
+export const ICQAssayReference = t.declare('ICQAssayReference');
 
-export const ICQCalibration = t.define('ICQCalibration');
+export const ICQCalibration = t.declare('ICQCalibration');
 
-export const ICQCalibrationMethod = t.define('ICQCalibrationMethod');
+export const ICQCalibrationMethod = t.declare('ICQCalibrationMethod');
 
-export const ICQCalibrationType = t.define('ICQCalibrationType');
+export const ICQCalibrationType = t.declare('ICQCalibrationType');
 
-export const ICQCalibrationStatus = t.define('ICQCalibrationStatus');
+export const ICQCalibrationStatus = t.declare('ICQCalibrationStatus');
 
-export const ICQOnBoardSolution = t.define('ICQOnBoardSolution');
+export const ICQOnBoardSolution = t.declare('ICQOnBoardSolution');
 
-export const ICQProcessingModule = t.define('ICQProcessingModule');
+export const ICQProcessingModule = t.declare('ICQProcessingModule');
 
-export const ICQModuleType = t.define('ICQModuleType');
+export const ICQModuleType = t.declare('ICQModuleType');
 
-export const ICQModuleStatus = t.define('ICQModuleStatus');
+export const ICQModuleStatus = t.declare('ICQModuleStatus');
 
-export const ICQOverallStatus = t.define('ICQOverallStatus');
+export const ICQOverallStatus = t.declare('ICQOverallStatus');
 
-export const ICQQCAnalysis = t.define('ICQQCAnalysis');
+export const ICQQCAnalysis = t.declare('ICQQCAnalysis');
 
-export const ICQQCAnalysisStatus = t.define('ICQQCAnalysisStatus');
+export const ICQQCAnalysisStatus = t.declare('ICQQCAnalysisStatus');
 
-export const ICQQCMaterial = t.define('ICQQCMaterial');
+export const ICQQCMaterial = t.declare('ICQQCMaterial');
 
-export const ICQQCMaterialStatus = t.define('ICQQCMaterialStatus');
+export const ICQQCMaterialStatus = t.declare('ICQQCMaterialStatus');
 
-export const ICQReagentStatus = t.define('ICQReagentStatus');
+export const ICQReagentStatus = t.declare('ICQReagentStatus');
 
-export const ICQReagentCartridgeStatus = t.define('ICQReagentCartridgeStatus');
+export const ICQReagentCartridgeStatus = t.declare('ICQReagentCartridgeStatus');
 
-export const ICQRSM = t.define('ICQRSM');
+export const ICQRSM = t.declare('ICQRSM');
 
-export const ICQRSMStatus = t.define('ICQRSMStatus');
+export const ICQRSMStatus = t.declare('ICQRSMStatus');
 
-export const ICQWorkcell = t.define('ICQWorkcell');
+export const ICQWorkcell = t.declare('ICQWorkcell');
 
-export const ICQConnectionStatus = t.define('ICQConnectionStatus');
+export const ICQConnectionStatus = t.declare('ICQConnectionStatus');
 
-export const ICQPrinterStatus = t.define('ICQPrinterStatus');
+export const ICQPrinterStatus = t.declare('ICQPrinterStatus');
 
 // Represents a camping site
-export const Camping = t.define('Camping');
+export const Camping = t.declare('Camping');
 
 // Location of the camping site
-export const CampingLocation = t.define('CampingLocation');
+export const CampingLocation = t.declare('CampingLocation');
 
 Health.define(t.struct({
   // Name of the service.
