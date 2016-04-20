@@ -11,7 +11,7 @@ export default function metarpheusTcomb({
   const genCaseClass = _genCaseClass(genType);
 
   const declareModels = models.map(({ name, desc = '' }) => {
-    return `${desc ? `// ${desc}\n` : ''}export const ${name} = t.define('${name}');
+    return `${desc ? `// ${desc}\n` : ''}export const ${name} = t.declare('${name}');
 `;
   }).join('\n');
 
