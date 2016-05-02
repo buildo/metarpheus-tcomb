@@ -30,12 +30,13 @@ const {
   apiModelPrefix = '',
   modelOut = 'model.js',
   apiOut = '',
-  overrides = {}
+  overrides = {},
+  renameModel = v => v
 } = Config(require(argv[configFileArg]));
 
 const intermRep = IntermRep(require(intermRepIn));
 
-const { model, api } = metarpheusTcomb({ intermRep, overrides, modelPrelude, apiPrelude, apiModelPrefix });
+const { model, api } = metarpheusTcomb({ intermRep, overrides, modelPrelude, apiPrelude, apiModelPrefix, renameModel });
 
 fs.writeFileSync(modelOut, model);
 if (apiOut) {

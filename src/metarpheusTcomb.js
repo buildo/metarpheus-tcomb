@@ -1,17 +1,18 @@
 import t from 'tcomb';
 import { StringSegment, ParamSegment, CaseEnum, CaseClass } from './IntermRep';
 import _genType from './genType';
-import genCaseEnum from './genCaseEnum';
+import _genCaseEnum from './genCaseEnum';
 import _genCaseClass from './genCaseClass';
 
 export default function metarpheusTcomb({
-  overrides, intermRep: { routes, models }, modelPrelude, apiPrelude, apiModelPrefix
+  overrides, intermRep: { routes, models }, modelPrelude, apiPrelude, apiModelPrefix, renameModel = v => v
 }) {
-  const genType = _genType(overrides);
-  const genCaseClass = _genCaseClass(genType);
+  const genType = _genType({ overrides, renameModel });
+  const genCaseClass = _genCaseClass({ genType, renameModel });
+  const genCaseEnum = _genCaseEnum({ renameModel });
 
   const declareModels = models.map(({ name, desc = '' }) => {
-    return `${desc ? `// ${desc}\n` : ''}export const ${name} = t.declare('${name}');
+    return `${desc ? `// ${desc}\n` : ''}export const ${renameModel(name)} = t.declare('${renameModel(name)}');
 `;
   }).join('\n');
 
