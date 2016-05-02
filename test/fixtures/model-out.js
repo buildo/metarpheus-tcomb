@@ -48,10 +48,10 @@ export const ICQConnectionStatus = t.declare('ICQConnectionStatus');
 export const ICQPrinterStatus = t.declare('ICQPrinterStatus');
 
 // Represents a camping site
-export const Camping = t.declare('Camping');
+export const Package = t.declare('Package');
 
 // Location of the camping site
-export const CampingLocation = t.declare('CampingLocation');
+export const PackageLocation = t.declare('PackageLocation');
 
 Health.define(t.struct({
   // Name of the service.
@@ -323,16 +323,16 @@ ICQPrinterStatus.define(t.enums.of([
   'NotConfigured'
 ]));
 
-Camping.define(t.struct({
+Package.define(t.struct({
   // camping name
   name: t.String,
   // number of tents
   size: t.Number,
   // camping location
-  location: CampingLocation
+  location: PackageLocation
 }));
 
-CampingLocation.define(t.enums.of([
+PackageLocation.define(t.enums.of([
   // Near the sea
   'Seaside',
   // High up
