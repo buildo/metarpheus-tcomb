@@ -1,15 +1,21 @@
 import t from 'tcomb';
+import sortBy from 'lodash/sortBy';
 import { StringSegment, ParamSegment, CaseEnum, CaseClass } from './IntermRep';
 import _genType from './genType';
 import _genCaseEnum from './genCaseEnum';
 import _genCaseClass from './genCaseClass';
 
 export default function metarpheusTcomb({
-  overrides, intermRep: { routes, models }, modelPrelude, apiPrelude, apiModelPrefix, renameModel = v => v
+  overrides, intermRep: {
+    routes: _routes, models: _models
+  }, modelPrelude, apiPrelude, apiModelPrefix, renameModel = v => v
 }) {
   const genType = _genType({ overrides, renameModel });
   const genCaseClass = _genCaseClass({ genType, renameModel });
   const genCaseEnum = _genCaseEnum({ renameModel });
+
+  const models = sortBy(_models, ({ name }) => renameModel(name));
+  const routes = sortBy(_routes, ({ ctrl }) => ctrl.join(''));
 
   const declareModels = models.map(({ name, desc = '' }) => {
     return `${desc ? `// ${desc}\n` : ''}export const ${renameModel(name)} = t.declare('${renameModel(name)}');

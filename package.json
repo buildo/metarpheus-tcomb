@@ -24,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "babel": "^5.8.38",
+    "lodash": "^4.11.2",
     "tcomb": "^3.0.0",
     "yargs": "^4.4.0"
   },
