@@ -1,3 +1,6 @@
+
+
+
 // Health
 export const Health = t.declare('Health');
 
@@ -11,19 +14,23 @@ export const ICQCalibration = t.declare('ICQCalibration');
 
 export const ICQCalibrationMethod = t.declare('ICQCalibrationMethod');
 
-export const ICQCalibrationType = t.declare('ICQCalibrationType');
-
 export const ICQCalibrationStatus = t.declare('ICQCalibrationStatus');
 
-export const ICQOnBoardSolution = t.declare('ICQOnBoardSolution');
+export const ICQCalibrationType = t.declare('ICQCalibrationType');
 
-export const ICQProcessingModule = t.declare('ICQProcessingModule');
-
-export const ICQModuleType = t.declare('ICQModuleType');
+export const ICQConnectionStatus = t.declare('ICQConnectionStatus');
 
 export const ICQModuleStatus = t.declare('ICQModuleStatus');
 
+export const ICQModuleType = t.declare('ICQModuleType');
+
+export const ICQOnBoardSolution = t.declare('ICQOnBoardSolution');
+
 export const ICQOverallStatus = t.declare('ICQOverallStatus');
+
+export const ICQPrinterStatus = t.declare('ICQPrinterStatus');
+
+export const ICQProcessingModule = t.declare('ICQProcessingModule');
 
 export const ICQQCAnalysis = t.declare('ICQQCAnalysis');
 
@@ -33,19 +40,15 @@ export const ICQQCMaterial = t.declare('ICQQCMaterial');
 
 export const ICQQCMaterialStatus = t.declare('ICQQCMaterialStatus');
 
-export const ICQReagentStatus = t.declare('ICQReagentStatus');
-
-export const ICQReagentCartridgeStatus = t.declare('ICQReagentCartridgeStatus');
-
 export const ICQRSM = t.declare('ICQRSM');
 
 export const ICQRSMStatus = t.declare('ICQRSMStatus');
 
+export const ICQReagentCartridgeStatus = t.declare('ICQReagentCartridgeStatus');
+
+export const ICQReagentStatus = t.declare('ICQReagentStatus');
+
 export const ICQWorkcell = t.declare('ICQWorkcell');
-
-export const ICQConnectionStatus = t.declare('ICQConnectionStatus');
-
-export const ICQPrinterStatus = t.declare('ICQPrinterStatus');
 
 // Represents a camping site
 export const Package = t.declare('Package');
@@ -126,11 +129,6 @@ ICQCalibrationMethod.define(t.enums.of([
   'Logit-5'
 ]));
 
-ICQCalibrationType.define(t.enums.of([
-  'Full',
-  'Adjust'
-]));
-
 ICQCalibrationStatus.define(t.enums.of([
   'NoCal',
   'Ok',
@@ -140,6 +138,34 @@ ICQCalibrationStatus.define(t.enums.of([
   'OverriddenLot',
   'PendingQC',
   'InProcess'
+]));
+
+ICQCalibrationType.define(t.enums.of([
+  'Full',
+  'Adjust'
+]));
+
+ICQConnectionStatus.define(t.enums.of([
+  'Connected',
+  'NotConnected',
+  'NotConfigured'
+]));
+
+ICQModuleStatus.define(t.enums.of([
+  'Offline',
+  'Stopped',
+  'Initializing',
+  'Warming',
+  'Idle',
+  'Running',
+  'Processing',
+  'Pausing',
+  'Maintenance'
+]));
+
+ICQModuleType.define(t.enums.of([
+  'IA',
+  'CC'
 ]));
 
 ICQOnBoardSolution.define(t.struct({
@@ -160,6 +186,19 @@ ICQOnBoardSolution.define(t.struct({
   cartridgeStatus: ICQReagentCartridgeStatus
 }));
 
+ICQOverallStatus.define(t.enums.of([
+  'Ok',
+  'Warning',
+  'Error'
+]));
+
+ICQPrinterStatus.define(t.enums.of([
+  'NoError',
+  'Warning',
+  'Error',
+  'NotConfigured'
+]));
+
 ICQProcessingModule.define(t.struct({
   _id: t.Number,
   serialNumber: t.String,
@@ -174,29 +213,6 @@ ICQProcessingModule.define(t.struct({
   QCAnalysisOverallStatus: ICQOverallStatus,
   maintenanceOverallStatus: ICQOverallStatus
 }));
-
-ICQModuleType.define(t.enums.of([
-  'IA',
-  'CC'
-]));
-
-ICQModuleStatus.define(t.enums.of([
-  'Offline',
-  'Stopped',
-  'Initializing',
-  'Warming',
-  'Idle',
-  'Running',
-  'Processing',
-  'Pausing',
-  'Maintenance'
-]));
-
-ICQOverallStatus.define(t.enums.of([
-  'Ok',
-  'Warning',
-  'Error'
-]));
 
 ICQQCAnalysis.define(t.struct({
   _moduleId: t.Number,
@@ -248,6 +264,35 @@ ICQQCMaterialStatus.define(t.enums.of([
   'Overridden'
 ]));
 
+ICQRSM.define(t.struct({
+  serialNumber: t.String,
+  name: t.String,
+  overallStatus: ICQOverallStatus,
+  status: ICQRSMStatus
+}));
+
+ICQRSMStatus.define(t.enums.of([
+  'Offline',
+  'Stopped',
+  'Initializing',
+  'Idle',
+  'Running',
+  'Pausing',
+  'Maintenance'
+]));
+
+ICQReagentCartridgeStatus.define(t.enums.of([
+  'Ok',
+  'UnloadError',
+  'LoadError',
+  'ScheduledUnload',
+  'ScheduledLoad',
+  'PartiallyUnloaded',
+  'Scanning',
+  'Unloading',
+  'Loading'
+]));
+
 ICQReagentStatus.define(t.enums.of([
   'Ok',
   'Mixing',
@@ -266,35 +311,6 @@ ICQReagentStatus.define(t.enums.of([
   'Undefined'
 ]));
 
-ICQReagentCartridgeStatus.define(t.enums.of([
-  'Ok',
-  'UnloadError',
-  'LoadError',
-  'ScheduledUnload',
-  'ScheduledLoad',
-  'PartiallyUnloaded',
-  'Scanning',
-  'Unloading',
-  'Loading'
-]));
-
-ICQRSM.define(t.struct({
-  serialNumber: t.String,
-  name: t.String,
-  overallStatus: ICQOverallStatus,
-  status: ICQRSMStatus
-}));
-
-ICQRSMStatus.define(t.enums.of([
-  'Offline',
-  'Stopped',
-  'Initializing',
-  'Idle',
-  'Running',
-  'Pausing',
-  'Maintenance'
-]));
-
 ICQWorkcell.define(t.struct({
   _serialNumber: t.String,
   name: t.String,
@@ -309,19 +325,6 @@ ICQWorkcell.define(t.struct({
   processingModules: t.list(ICQProcessingModule),
   RSM: ICQRSM
 }));
-
-ICQConnectionStatus.define(t.enums.of([
-  'Connected',
-  'NotConnected',
-  'NotConfigured'
-]));
-
-ICQPrinterStatus.define(t.enums.of([
-  'NoError',
-  'Warning',
-  'Error',
-  'NotConfigured'
-]));
 
 Package.define(t.struct({
   // camping name
@@ -338,3 +341,4 @@ PackageLocation.define(t.enums.of([
   // High up
   'Mountains'
 ]));
+  
