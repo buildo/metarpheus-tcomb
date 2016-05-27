@@ -1,6 +1,6 @@
 import t from 'tcomb';
 import sortBy from 'lodash/sortBy';
-import { StringSegment, ParamSegment, CaseEnum, CaseClass } from './IntermRep';
+import { StringSegment, ParamSegment, CaseEnum, CaseClass, Tpe } from './IntermRep';
 import _genType from './genType';
 import _genCaseEnum from './genCaseEnum';
 import _genCaseClass from './genCaseClass';
@@ -50,7 +50,11 @@ export default function metarpheusTcomb({
       routeParam: { tpe }
     }) => genTypeM(tpe)).join(', ')}],
     params: {
-      ${params.map(({ name, tpe }) => `${name}: ${genTypeM(tpe)}`).join(`,
+      ${params.map(({ name, tpe: _tpe, required = true }) => {
+        // handle optional query parameters:
+        const tpe = required ? _tpe : Tpe({ name: 'Option', args: [_tpe] });
+        return `${name}: ${genTypeM(tpe)}`;
+      }).join(`,
       `)}
     }
   }`).join(`,
