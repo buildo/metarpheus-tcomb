@@ -22,10 +22,18 @@ export default function metarpheusTcomb({
 `;
   }).join('\n');
 
-  const defineModels = models.map(model => t.match(model,
-    CaseEnum, genCaseEnum(model),
-    CaseClass, genCaseClass(model)
-  )).join(`
+  const defineModels = models.map(model => {
+    // allow overriding top level models
+    const name = renameModel(model.name);
+    if (overrides[name]) {
+      return `${name}.define(${genType()(Tpe({ name }))})`;
+    }
+
+    return t.match(model,
+      CaseEnum, genCaseEnum(model),
+      CaseClass, genCaseClass(model)
+    );
+  }).join(`
 
 `);
 
