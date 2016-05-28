@@ -79,18 +79,18 @@ val route = {
 becomes...
 
 ```js
-const UserType = t.enums.of([
+export const UserType = t.enums.of([
   'User',
   'SuperUser'
 ], 'UserType');
 
-const User = t.struct({
+export const User = t.struct({
   _id: Id/*Id[User]*/, // ID of the user
   username: t.String, // username
   userType: UserType // type of the user
 }, 'User');
 
-apis = [
+export const api = [
   // GET /users/ : get user by id
   {
     method: 'get',
