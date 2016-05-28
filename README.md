@@ -4,11 +4,16 @@
 
 generate a [tcomb](https://github.com/gcanti/tcomb) domain model interpreting [metarpheus](https://github.com/buildo/metarpheus) output
 
-## running
+## install
 
 ```sh
-git clone git@github.com:buildo/metarpheus-tcomb.git
-node metarpheus-tcomb --config=path/to/config/file`
+npm i metarpheus-tcomb
+```
+
+## usage
+
+```sh
+metarpheus-tcomb --config=path/to/config/file`
 ```
 
 ## configuration
@@ -36,6 +41,6 @@ import * as m from './model';
 
 ## TODO
 
-the `api` part should be moved to its own repo, left it here for simplicity for now.
+the `api` part should probably be moved to its own repo, left it here for simplicity for now.
 
 `apiOut` config param is thus optional
