@@ -13,7 +13,7 @@ npm i metarpheus-tcomb
 ## usage
 
 ```sh
-metarpheus-tcomb --config=path/to/config/file`
+metarpheus-tcomb --config=path/to/config/file
 ```
 
 ## configuration
