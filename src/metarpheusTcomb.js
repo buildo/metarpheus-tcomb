@@ -15,7 +15,9 @@ export default function metarpheusTcomb({
   const genCaseEnum = _genCaseEnum({ renameModel });
 
   const models = sortBy(_models, ({ name }) => renameModel(name));
-  const routes = sortBy(_routes, ({ ctrl }) => ctrl.join(''));
+  const routes = sortBy(_routes, ({ route }) => route.map(
+    s => StringSegment.is(s) ? s.str : (s.routeParam.name || ':param')
+  ).join(''));
 
   const declareModels = models.map(({ name, desc = '' }) => {
     return `${desc ? `// ${desc}\n` : ''}export const ${renameModel(name)} = t.declare('${renameModel(name)}');
