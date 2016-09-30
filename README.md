@@ -16,6 +16,19 @@ npm i metarpheus-tcomb
 metarpheus-tcomb --config=path/to/config/file
 ```
 
+## usage from node
+
+```js
+metarpheusTcomb = require('metarpheus-tcomb')
+
+model = metarpheusTcomb({
+  intermRep: {}, // a valid interm. rep. object (output from metarpheus),
+  config: {
+    // more configuration (see below)
+  }
+}).model
+```
+
 ## configuration
 
 An example config file is in [config.js](https://github.com/buildo/metarpheus-tcomb/blob/master/test/fixtures/config.js)
@@ -38,6 +51,9 @@ import * as m from './model';
   }
 };
 ```
+
+> **Note**: for `node` usage, you shouldn't provide `intermRepIn` via config.
+> A JS/JSON config object is instead passed as separate parameter
 
 ## Example
 
