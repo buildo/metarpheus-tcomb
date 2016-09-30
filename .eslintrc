@@ -4,6 +4,7 @@
     "mocha": true
   },
   "rules": {
-    "no-extra-parens": 0
+    "no-extra-parens": 0,
+    "max-len": 0
   }
 }

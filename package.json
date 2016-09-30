@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
+    "eslint": "^2.13.1",
     "eslint-config-buildo": "github:buildo/eslint-config",
     "eslint-plugin-no-copy-paste-default-export": "0.0.3",
     "eslint-plugin-no-loops": "^0.2.0",
