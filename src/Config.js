@@ -1,6 +1,6 @@
 import t from 'tcomb';
 
-export default t.struct({
+export default t.interface({
   intermRepIn: t.String,
   modelPrelude: t.maybe(t.String),
   apiPrelude: t.maybe(t.String),
