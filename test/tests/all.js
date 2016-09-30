@@ -2,12 +2,11 @@ import expect from 'expect';
 import genType from '../../src/genType';
 import genCaseEnum from '../../src/genCaseEnum';
 import genCaseClass from '../../src/genCaseClass';
-import metarpheusTcomb from '../../src/metarpheusTcomb';
-import IntermRep from '../../src/IntermRep';
+import mt from '../../src/index';
 import fs from 'fs';
 import path from 'path';
 
-import _intermRep from '../fixtures/metarpheus-interm-rep';
+import intermRep from '../fixtures/metarpheus-interm-rep';
 const modelOut = fs.readFileSync(path.join(__dirname, '../fixtures/model-out.js'), 'utf8');
 
 describe('genType', () => {
@@ -161,17 +160,18 @@ describe('genCaseClass', () => {
 describe('the whole thing', () => {
 
   it('should work', () => {
-    const intermRep = IntermRep(_intermRep);
-    const { model } = metarpheusTcomb({
+    const { model } = mt({
       intermRep,
-      overrides: {
-        Date: (_, { prefix = '' }) => `${prefix}LabOnlineDate`,
-        DateTime: (_, { prefix = '' }) => `${prefix}LabOnlineDateTime`,
-        Id: ({ args: [tpe] }, { gen, prefix = '' }) => `${prefix}LabOnlineId/*Id[${gen(tpe)}]*/`
-      },
-      modelPrelude: '',
-      apiPrelude: '',
-      renameModel: s => s.replace('Camping', 'Package')
+      config: {
+        overrides: {
+          Date: (_, { prefix = '' }) => `${prefix}LabOnlineDate`,
+          DateTime: (_, { prefix = '' }) => `${prefix}LabOnlineDateTime`,
+          Id: ({ args: [tpe] }, { gen, prefix = '' }) => `${prefix}LabOnlineId/*Id[${gen(tpe)}]*/`
+        },
+        modelPrelude: '',
+        apiPrelude: '',
+        renameModel: s => s.replace('Camping', 'Package')
+      }
     });
     expect(model.trim()).toBe(modelOut.trim());
   });
