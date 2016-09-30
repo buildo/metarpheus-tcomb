@@ -1,6 +1,6 @@
 {
   "name": "metarpheus-tcomb",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "metarpheus to JS/tcomb transliteration",
   "main": "lib/index.js",
   "directories": {
