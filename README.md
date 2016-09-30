@@ -52,8 +52,8 @@ import * as m from './model';
 };
 ```
 
-> **Note**: for `node` usage, you shouldn't provide `intermRepIn` via config.
-> A JS/JSON config object is instead passed as separate parameter
+> **Note**: for `node` usage, you shouldn't provide `intermRepIn`, `modelOut`, `apiOut` via config.
+> You should pass `intermRep` as a separate parameter, and the model and api outputs are returned by the node api function.
 
 ## Example
 

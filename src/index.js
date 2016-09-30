@@ -4,7 +4,6 @@ import Config from './Config';
 
 export default function({ intermRep: _intermRep, config }) {
   const {
-    intermRepIn,
     modelPrelude = `// DO NOT EDIT MANUALLY - metarpheus-generated
 
   `,
@@ -12,8 +11,6 @@ export default function({ intermRep: _intermRep, config }) {
 
   `,
     apiModelPrefix = '',
-    modelOut = 'model.js',
-    apiOut = '',
     overrides = {},
     renameModel = v => v
   } = Config(config);
