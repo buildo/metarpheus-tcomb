@@ -17,7 +17,7 @@ require('babel-register')({
   extensions: ['.js']
 });
 
-const config = CliConfig(require(path.resolve(process.cwd(), argv[configFileArg])));
+const config = CliConfig(require(path.resolve(process.cwd(), argv[configFileArg])).default);
 const intermRep = require(path.resolve(process.cwd(), config.intermRepIn));
 
 const { model, api } = metarpheusTcomb({ intermRep, config });
