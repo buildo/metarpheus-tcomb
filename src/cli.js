@@ -12,14 +12,12 @@ if (!argv[configFileArg]) {
   throw new Error(`missing --${configFileArg}=path/to/config.js[on]`);
 }
 
-require('babel/register')({
+require('babel-register')({
   only: new RegExp(argv[configFileArg].replace(/\.js$/, '')), // so that config file can be ESwhatever
-  extensions: ['.js'],
-  stage: 0,
-  loose: true
+  extensions: ['.js']
 });
 
-const config = CliConfig(require(path.resolve(process.cwd(), argv[configFileArg])));
+const config = CliConfig(require(path.resolve(process.cwd(), argv[configFileArg])).default);
 const intermRep = require(path.resolve(process.cwd(), config.intermRepIn));
 
 const { model, api } = metarpheusTcomb({ intermRep, config });
