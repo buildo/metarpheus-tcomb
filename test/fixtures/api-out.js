@@ -173,7 +173,8 @@ export default [
     routeParamTypes: [],
     params: {
       
-    }
+    },
+    body: m.Package
   },
 
   // GET /campings/ : get a camping by typed id

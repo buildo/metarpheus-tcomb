@@ -43,7 +43,7 @@ export default function metarpheusTcomb({
 
   const apiRoutes = routes.map(({
     method, authenticated, route,
-    ctrl, params, desc = '', returns
+    ctrl, params, body, desc = '', returns
   }) => `  // ${method.toUpperCase()} /${route.map(r => r.str).join('/')} : ${desc}
   {
     method: '${method}',
@@ -66,7 +66,8 @@ export default function metarpheusTcomb({
         return `${name}: ${genTypeM(tpe)}`;
       }).join(`,
       `)}
-    }
+    }${body ? `,
+    body: ${genTypeM(body.tpe)}` : ''}
   }`).join(`,
 
 `);
