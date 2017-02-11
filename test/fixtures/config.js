@@ -2,7 +2,7 @@ export default {
   apiModelPrefix: 'm.',
   intermRepIn: 'test/fixtures/metarpheus-interm-rep.json',
   modelOut: 'test/fixtures/model-out.js',
-  apiOut: 'api.js',
+  apiOut: 'test/fixtures/api-out.js',
   overrides: {
     Date: (_, { prefix = '' }) => `${prefix}LabOnlineDate`,
     DateTime: (_, { prefix = '' }) => `${prefix}LabOnlineDateTime`,
