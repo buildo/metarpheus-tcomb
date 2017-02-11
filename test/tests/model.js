@@ -157,7 +157,7 @@ describe('genCaseClass', () => {
 
 });
 
-describe('the whole thing', () => {
+describe('model', () => {
 
   it('should work', () => {
     const { model } = mt({

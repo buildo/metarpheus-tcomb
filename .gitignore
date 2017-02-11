@@ -1,5 +1,5 @@
 node_modules
-api.js
-model.js
+./api.js
+./model.js
 lib
 npm-debug.log
