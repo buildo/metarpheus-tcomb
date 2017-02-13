@@ -41,10 +41,23 @@ export default function metarpheusTcomb({
 
   const genTypeM = genType(apiModelPrefix);
 
+  const generateParams = params => params.map(({ name, tpe: _tpe, required = true }) => {
+    // handle optional parameters:
+    const tpe = required ? _tpe : Tpe({ name: 'Option', args: [_tpe] });
+    return `${name}: ${genTypeM(tpe)}`;
+  }).join(`,
+      `);
+
   const apiRoutes = routes.map(({
     method, authenticated, route,
-    ctrl, params, body, desc = '', returns
-  }) => `  // ${method.toUpperCase()} /${route.map(r => r.str).join('/')} : ${desc}
+    ctrl, params: _params, body: _body, desc = '', returns
+  }) => {
+    const queryParams = _params.filter(({ inBody = false }) => !inBody);
+    const bodyParams = _params.filter(({ inBody }) => inBody);
+    const body = _body ? genTypeM(_body.tpe) : bodyParams.length > 0 ? `t.interface({
+      ${generateParams(bodyParams)}
+    })` : null;
+    return `  // ${method.toUpperCase()} /${route.map(r => r.str).join('/')} : ${desc}
   {
     method: '${method}',
     name: [${ctrl.map(s => `'${s}'`).join(', ')}],
@@ -60,15 +73,11 @@ export default function metarpheusTcomb({
       routeParam: { tpe }
     }) => genTypeM(tpe)).join(', ')}],
     params: {
-      ${params.map(({ name, tpe: _tpe, required = true }) => {
-        // handle optional query parameters:
-        const tpe = required ? _tpe : Tpe({ name: 'Option', args: [_tpe] });
-        return `${name}: ${genTypeM(tpe)}`;
-      }).join(`,
-      `)}
+      ${generateParams(queryParams)}
     }${body ? `,
-    body: ${genTypeM(body.tpe)}` : ''}
-  }`).join(`,
+    body: ${body}` : ''}
+  }`;
+  }).join(`,
 
 `);
 

@@ -270,6 +270,22 @@ export default [
     }
   },
 
+  // POST /wiroCampings : create a camping
+  {
+    method: 'post',
+    name: ['campingController', 'create'],
+    authenticated: false,
+    returnType: m.Package,
+    route: (...routeParams) => ['wiroCampings'].join('/'),
+    routeParamTypes: [],
+    params: {
+      
+    },
+    body: t.interface({
+      camping: m.Package
+    })
+  },
+
   // GET /workcells : get ICQ workcells information
   {
     method: 'get',
