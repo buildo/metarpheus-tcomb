@@ -34,9 +34,6 @@
     "babel-preset-stage-0": "^6.16.0",
     "eslint": "^2.13.1",
     "eslint-config-buildo": "github:buildo/eslint-config",
-    "eslint-plugin-no-copy-paste-default-export": "0.0.3",
-    "eslint-plugin-no-loops": "^0.2.0",
-    "eslint-plugin-react": "^4.3.0",
     "expect": "^1.16.0",
     "mocha": "^2.4.5",
     "require-dir": "^0.3.0"
