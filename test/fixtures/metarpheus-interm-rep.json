@@ -1324,5 +1324,25 @@
     "ctrl" : [ "campingController", "getByQuery" ],
     "desc" : "get multiple campings by params with case class",
     "name" : [ "campingController", "getByQuery" ]
+  }, {
+    "method" : "post",
+    "route" : [ {
+      "str" : "wiroCampings"
+    } ],
+    "params" : [ {
+      "name" : "camping",
+      "tpe" : {
+        "name" : "Camping"
+      },
+      "required" : true,
+      "inBody" : true
+    } ],
+    "authenticated" : false,
+    "returns" : {
+      "name" : "Camping"
+    },
+    "ctrl" : [ "campingController", "create" ],
+    "desc" : "create a camping",
+    "name" : [ "campingController", "create" ]
   } ]
 }
