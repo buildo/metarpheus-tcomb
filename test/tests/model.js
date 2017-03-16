@@ -176,4 +176,15 @@ describe('model', () => {
     expect(model.trim()).toBe(modelOut.trim());
   });
 
+  it('should fail on duplicate types', () => {
+    const duplicate = {
+      name: 'Duplicate',
+      members: [{ name: 'id', tpe: { name: 'String' } }]
+    };
+    expect(() => mt({
+      intermRep: { models: [duplicate, duplicate], routes: [] },
+      config: {}
+    })).toThrow();
+  });
+
 });

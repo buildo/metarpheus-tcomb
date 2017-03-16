@@ -1,5 +1,6 @@
 import t from 'tcomb';
 import sortBy from 'lodash/sortBy';
+import sortedUniqBy from 'lodash/sortedUniqBy';
 import { StringSegment, ParamSegment, CaseEnum, CaseClass, Tpe } from './IntermRep';
 import _genType from './genType';
 import _genCaseEnum from './genCaseEnum';
@@ -15,6 +16,9 @@ export default function metarpheusTcomb({
   const genCaseEnum = _genCaseEnum({ renameModel });
 
   const models = sortBy(_models, ({ name }) => renameModel(name));
+  if (sortedUniqBy(models, ({ name }) => name).length !== models.length) {
+    throw new Error('Duplicate model found in intermRep');
+  }
   const routes = sortBy(_routes, ({ route }) => route.map(
     s => StringSegment.is(s) ? s.str : (s.routeParam.name || ':param')
   ).join(''));
