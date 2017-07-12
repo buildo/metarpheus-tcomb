@@ -11,5 +11,6 @@ export default {
   Option: ({ args: [tpe] }, { gen }) => `t.maybe(${gen(tpe)})`,
   Set: List,
   TreeSet: List,
-  Map: ({ args: [k, v] }, { gen }) => `t.dict(${gen(k)}, ${gen(v)})`
+  Map: ({ args: [k, v] }, { gen }) => `t.dict(${gen(k)}, ${gen(v)})`,
+  Unit: () => 't.Nil'
 };
