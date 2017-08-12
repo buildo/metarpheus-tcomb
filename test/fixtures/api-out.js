@@ -184,7 +184,7 @@ export default [
     authenticated: true,
     returnType: m.Package,
     route: (...routeParams) => ['campings', routeParams[0]].join('/'),
-    routeParamTypes: [m.LabOnlineId/*Id[m.Package]*/],
+    routeParamTypes: [{ undefined: m.LabOnlineId/*Id[m.Package]*/ }],
     params: {
       
     }
@@ -211,7 +211,7 @@ export default [
     authenticated: true,
     returnType: m.Package,
     route: (...routeParams) => ['campings', routeParams[0]].join('/'),
-    routeParamTypes: [t.Number],
+    routeParamTypes: [{ id: t.Number }],
     params: {
       
     }
