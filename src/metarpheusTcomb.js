@@ -74,8 +74,8 @@ export default function metarpheusTcomb({
       ).join(', ');
     })()}].join('/'),
     routeParamTypes: [${route.filter(ParamSegment.is).map(({
-      routeParam: { tpe }
-    }) => genTypeM(tpe)).join(', ')}],
+      routeParam: { name, tpe }
+    }) => `{ ${name}: ${genTypeM(tpe)} }`).join(', ')}],
     params: {
       ${generateParams(queryParams)}
     }${body ? `,

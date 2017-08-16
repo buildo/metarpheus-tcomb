@@ -1218,6 +1218,7 @@
       "str" : "campings"
     }, {
       "routeParam" : {
+        "name": "id",
         "tpe" : {
           "name" : "Id",
           "args" : [ {

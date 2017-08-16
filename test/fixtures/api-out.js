@@ -177,19 +177,6 @@ export default [
     body: m.Package
   },
 
-  // GET /campings/ : get a camping by typed id
-  {
-    method: 'get',
-    name: ['campingController', 'getByTypedId'],
-    authenticated: true,
-    returnType: m.Package,
-    route: (...routeParams) => ['campings', routeParams[0]].join('/'),
-    routeParamTypes: [m.LabOnlineId/*Id[m.Package]*/],
-    params: {
-      
-    }
-  },
-
   // GET /campings/by_query : get multiple campings by params with case class
   {
     method: 'get',
@@ -211,7 +198,20 @@ export default [
     authenticated: true,
     returnType: m.Package,
     route: (...routeParams) => ['campings', routeParams[0]].join('/'),
-    routeParamTypes: [t.Number],
+    routeParamTypes: [{ id: t.Number }],
+    params: {
+      
+    }
+  },
+
+  // GET /campings/ : get a camping by typed id
+  {
+    method: 'get',
+    name: ['campingController', 'getByTypedId'],
+    authenticated: true,
+    returnType: m.Package,
+    route: (...routeParams) => ['campings', routeParams[0]].join('/'),
+    routeParamTypes: [{ id: m.LabOnlineId/*Id[m.Package]*/ }],
     params: {
       
     }
