@@ -12,5 +12,6 @@ export default {
   Set: List,
   TreeSet: List,
   Map: ({ args: [k, v] }, { gen }) => `t.dict(${gen(k)}, ${gen(v)})`,
-  Unit: () => 't.Nil'
+  Unit: () => 't.Nil',
+  Any: () => 't.Any'
 };
